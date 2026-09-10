@@ -7,7 +7,7 @@ const Media = () => {
     <div className="flex flex-col gap-8 pt-4">
       <div>
         <h2 className="text-sm uppercase font-titleFont mb-4 text-gray-500 tracking-wider">
-          Connect
+          Find me on
         </h2>
         <div className="flex gap-3">
           <a
@@ -16,7 +16,7 @@ const Media = () => {
             rel="noopener noreferrer"
             className="group"
           >
-            <span className="w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm">
+            <span className="social-icon">
               <FaFacebookF size={20} />
             </span>
           </a>
@@ -26,7 +26,7 @@ const Media = () => {
             rel="noopener noreferrer"
             className="group"
           >
-            <span className="w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm">
+            <span className="social-icon">
               <FaGithub size={20} />
             </span>
           </a>
@@ -36,7 +36,7 @@ const Media = () => {
             rel="noopener noreferrer"
             className="group"
           >
-            <span className="w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm">
+            <span className="social-icon">
               <FaLinkedinIn size={20} />
             </span>
           </a>
@@ -44,7 +44,7 @@ const Media = () => {
             href="mailto:sonam98290@gmail.com?subject=Hello&body=I%20would%20like%20to%20connect%20with%20you"
             className="group"
           >
-            <span className="w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm">
+            <span className="social-icon">
               <FaEnvelope size={20} />
             </span>
           </a>
