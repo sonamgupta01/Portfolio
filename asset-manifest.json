@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.f0359f22.css",
-    "main.js": "/Portfolio/static/js/main.6f87c4fc.js",
-    "static/media/projectOne.jpg": "/Portfolio/static/media/projectOne.3107f1a85ed86a6a9e57.jpg",
-    "static/media/projectfour.jpg": "/Portfolio/static/media/projectfour.029f69ee2be2d746ce2d.jpg",
-    "static/media/projectTwo.jpg": "/Portfolio/static/media/projectTwo.52b2064b912446d451d2.jpg",
-    "static/media/bannerImg.png": "/Portfolio/static/media/bannerImg.72bfface518910b3a05e.png",
-    "static/media/contactImg.png": "/Portfolio/static/media/contactImg.8ddfbfd11798f881db54.png",
-    "static/media/projectThree.jpeg": "/Portfolio/static/media/projectThree.f7069ce41974b46ccf1c.jpeg",
-    "index.html": "/Portfolio/index.html",
-    "main.f0359f22.css.map": "/Portfolio/static/css/main.f0359f22.css.map",
-    "main.6f87c4fc.js.map": "/Portfolio/static/js/main.6f87c4fc.js.map"
+    "main.css": "/static/css/main.87d0cffa.css",
+    "main.js": "/static/js/main.b684b084.js",
+    "static/media/image4.png": "/static/media/image4.123196e456f742d6cff9.png",
+    "static/media/image6.png": "/static/media/image6.72ef69268444dbf7b8d7.png",
+    "static/media/image5.png": "/static/media/image5.12d0a5e08ec6f3a55258.png",
+    "static/media/image2.png": "/static/media/image2.8007a96064e4029292d0.png",
+    "static/media/SonamResume.pdf": "/static/media/SonamResume.bc727a177197df618c39.pdf",
+    "static/media/image1.png": "/static/media/image1.1391e6baea6fd29259bd.png",
+    "static/media/bannerImg.png": "/static/media/bannerImg.404a00b73a849be719b6.png",
+    "static/media/image3.png": "/static/media/image3.f22682aab3c6ac3fb31e.png",
+    "static/media/contactImg.png": "/static/media/contactImg.8ddfbfd11798f881db54.png",
+    "index.html": "/index.html",
+    "main.87d0cffa.css.map": "/static/css/main.87d0cffa.css.map",
+    "main.b684b084.js.map": "/static/js/main.b684b084.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0359f22.css",
-    "static/js/main.6f87c4fc.js"
+    "static/css/main.87d0cffa.css",
+    "static/js/main.b684b084.js"
   ]
 }
