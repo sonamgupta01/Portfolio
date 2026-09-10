@@ -3,27 +3,128 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .bannerIcon{
-        @apply w-16 h-16 bg-black bg-opacity-25 text-gray-200 text-xl inline-flex items-center justify-center rounded-md shadow-shadowOne hover:bg-opacity-40 hover:-translate-y-1 transition-all hover:text-designColor cursor-pointer duration-300;
-    }
-    .resumeLi {
-    @apply w-full h-20 bg-black bg-opacity-25 text-xl text-gray-300 flex justify-center cursor-pointer hover:bg-opacity-40 duration-300 items-center border-[1px] rounded-none;
-         }
-.bgOpacity {
-@apply bg-black bg-opacity-40;
-                  }
-    .contactInput{
-        @apply w-full h-12 rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300
-    }
-.contactTextArea{
-    @apply w-full rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 py-2 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300 resize-none
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-bodyFont antialiased;
+  }
+  
+  ::selection {
+    @apply bg-designColor/30 text-white;
+  }
 }
 
-.active {
-    color: white;
+@layer components {
+  .bannerIcon {
+    @apply w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm;
+  }
+  
+  .contactInput {
+    @apply w-full px-5 py-4 rounded-xl bg-gray-900/50 border border-gray-800/50 text-white placeholder-gray-600 transition-all duration-300 outline-none hover:border-gray-700 focus:border-designColor/50 focus:ring-1 focus:ring-designColor/50;
+  }
+  
+  .contactTextArea {
+    @apply w-full px-5 py-4 rounded-xl bg-gray-900/50 border border-gray-800/50 text-white placeholder-gray-600 transition-all duration-300 outline-none hover:border-gray-700 focus:border-designColor/50 focus:ring-1 focus:ring-designColor/50 resize-y min-h-[140px];
+  }
+  
+  .section-container {
+    @apply max-w-[1400px] mx-auto px-4;
+  }
+  
+  .card-base {
+    @apply bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-2xl backdrop-blur-sm transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:border-designColor/30 hover:shadow-[0_20px_40px_rgba(255,1,79,0.15)];
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-designColor to-pink-600 text-white font-medium text-base hover:from-pink-600 hover:to-designColor hover:shadow-[0_0_30px_rgba(255,1,79,0.4)] transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-700 bg-transparent text-white font-medium text-base hover:border-designColor hover:bg-gray-900 hover:shadow-[0_0_30px_rgba(255,1,79,0.2)] transition-all duration-300;
+  }
+  
+  .social-icon {
+    @apply w-11 h-11 rounded-xl bg-gray-900/50 border border-gray-800 inline-flex items-center justify-center text-gray-400 hover:text-designColor hover:border-designColor/50 hover:bg-gray-900 transition-all duration-300 backdrop-blur-sm;
+  }
+  
+  .skill-badge {
+    @apply px-4 py-2 rounded-xl bg-gray-900/50 border border-gray-800/50 text-gray-300 text-sm font-medium hover:border-designColor/50 hover:text-white hover:bg-gray-900 transition-all duration-300;
+  }
+  
+  .input-error {
+    @apply border-designColor focus:border-designColor focus:ring-1 focus:ring-designColor;
+  }
+  
+  .input-focus {
+    @apply focus:border-designColor/50 focus:ring-1 focus:ring-designColor/50;
+  }
 }
-.scrollbar-hide::-webkit-scrollbar{
-    display: none;
+
+/* Scroll reveal animations */
+@layer utilities {
+  .scroll-reveal {
+    @apply opacity-0 translate-y-10 transition-all duration-700 ease-out;
+  }
+  
+  .scroll-reveal.visible {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .scroll-reveal-delay-1 { transition-delay: 100ms; }
+  .scroll-reveal-delay-2 { transition-delay: 200ms; }
+  .scroll-reveal-delay-3 { transition-delay: 300ms; }
+  .scroll-reveal-delay-4 { transition-delay: 400ms; }
+  .scroll-reveal-delay-5 { transition-delay: 500ms; }
+  .scroll-reveal-delay-6 { transition-delay: 600ms; }
+}
+
+/* Custom scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus visible styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-designColor/50 ring-offset-2 ring-offset-bodyColor;
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  @apply bg-gradient-to-r from-designColor to-pink-500 bg-clip-text text-transparent;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.glass-dark {
+  @apply bg-gray-900/50 backdrop-blur-xl border border-gray-800/50;
 }

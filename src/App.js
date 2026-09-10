@@ -9,15 +9,15 @@ import Resume from "./components/resume/Resume";
 
 function App() {
   return (
-    <div className="w-full h-auto bg-bodyColor text-lightText px-4">
+    <div className="w-full h-auto bg-bodyColor text-lightText">
         <Navbar />
-      <div className="max-w-screen-xl mx-auto">
+      <main className="max-w-[1400px] mx-auto px-4">
         <Banner />
         <Features />
         <Projects />
         <Resume />
         <Contact />
-      </div>
+      </main>
     </div>
   );
 }

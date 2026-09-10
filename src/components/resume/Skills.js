@@ -2,105 +2,69 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Skills = () => {
+  const skillCategories = [
+    {
+      title: 'Programming Languages',
+      icon: '💻',
+      skills: ['Java', 'C++', 'C', 'Python', 'SQL', 'JavaScript', 'TypeScript']
+    },
+    {
+      title: 'AI / Machine Learning',
+      icon: '🧠',
+      skills: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'OpenCV', 'NLP', 'Computer Vision', 'Deep Learning']
+    },
+    {
+      title: 'Web Development',
+      icon: '🌐',
+      skills: ['React', 'Node.js', 'Express', 'HTML5', 'CSS3', 'Tailwind CSS', 'REST APIs']
+    },
+    {
+      title: 'Data & Databases',
+      icon: '🗄️',
+      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Pandas', 'NumPy', 'Data Analysis', 'ETL Pipelines']
+    },
+    {
+      title: 'Tools & Platforms',
+      icon: '🛠️',
+      skills: ['Git', 'Docker', 'Linux', 'VS Code', 'Postman', 'Jupyter', 'Render', 'Vercel', 'Netlify']
+    },
+    {
+      title: 'Core CS Concepts',
+      icon: '📚',
+      skills: ['DSA', 'Algorithms', 'OOP', 'OS', 'Networking', 'DBMS', 'System Design']
+    }
+  ];
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.5 } }}
-      className="w-full flex flex-col lgl:flex-row gap-10 lgl:gap-20"
-    >
-      {/* Coding Skills Section */}
-      <div className="w-full lgl:w-1/2">
-        <div className="py-12 font-titleFont flex flex-col gap-6">
-          <p className="text-sm text-designColor tracking-[4px] uppercase">Features</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Coding Skills</h2>
-        </div>
-        <div className="mt-8 w-full flex flex-col gap-3">
-          {[
-            { skill: 'Java', level: '70%' },
-            { skill: 'C++', level: '80%' },
-            { skill: 'C', level: '75%' },
-            { skill: 'SQL', level: '85%' },
-            { skill: 'Python', level: '80%' }
-          ].map(({ skill, level }, index) => (
-            <div className="overflow-x-hidden" key={index}>
-              <p className="text-sm uppercase font-medium">{skill}</p>
-              <span className="w-full h-2 bgOpacity rounded-md inline-flex mt-2">
-                <motion.span
-                  initial={{ x: '-100%', opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="w-[70%] h-full bg-gradient-to-r from-blue-600 via-pink-500 to-red-500 rounded-md relative"
-                  style={{ width: level }}
-                >
-                  <span className="absolute -top-7 right-0">{level}</span>
-                </motion.span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Development Skills Section */}
-      <div className="w-full lgl:w-1/2">
-        <div className="py-12 font-titleFont flex flex-col gap-4">
-          <p className="text-sm text-designColor tracking-[4px] uppercase">Features</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Development Skills</h2>
-        </div>
-        
-        <div className="mt-8 w-full flex flex-col gap-6">
-          {/* Added margin-bottom for spacing */}
-          {[
-            { skill: 'React', level: '75%' },
-            { skill: 'HTML5', level: '95%' },
-            { skill: 'CSS3', level: '80%' },
-            { skill: 'JavaScript', level: '75%' },
-            { skill: 'Node.js', level: '40%' }
-          ].map(({ skill, level }, index) => (
-            <div className="overflow-x-hidden" key={index}>
-              <p className="text-sm uppercase font-medium">{skill}</p>
-              <span className="w-full h-2 bgOpacity rounded-md inline-flex mt-2">
-                <motion.span
-                  initial={{ x: '-100%', opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="h-full bg-gradient-to-r from-blue-600 via-pink-500 to-red-500 rounded-md relative"
-                  style={{ width: level }}
-                >
-                  <span className="absolute -top-7 right-0">{level}</span>
-                </motion.span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Courses Section */}
-      <div className="w-full lgl:w-1/2">
-        <div className="py-12 font-titleFont flex flex-col gap-4">
-          <p className="text-sm text-designColor tracking-[4px] uppercase">Features</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Courses </h2>(Amrita University)
-          {/* Adjusted to align better with other sections */}
-         
-        </div>
-        <div className="mt-8 w-full flex flex-col gap-6">
-          <div className="overflow-x-hidden">
-            <p className="text-sm uppercase font-medium">
-              DAA | DSA | OS | NETWORK | ROS | ML | DL | CLOUD COMPUTING | DBMS
-            </p>
-            <span className="w-full h-2 bgOpacity rounded-md inline-flex mt-2">
-              <motion.span
-                initial={{ x: '-100%', opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="w-[75%] h-full bg-gradient-to-r from-blue-600 via-pink-500 to-red-500 rounded-md relative"
-              >
-                <span className="absolute -top-7 right-0">75%</span>
-              </motion.span>
-            </span>
+    <div className="space-y-8">
+      {skillCategories.map((category, catIndex) => (
+        <motion.div
+          key={category.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: catIndex * 0.08 }}
+          className="bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-2xl p-6 lg:p-8 hover:border-designColor/30 transition-all duration-300 backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-2xl">{category.icon}</span>
+            <h3 className="text-lg lg:text-xl font-bold text-white">{category.title}</h3>
           </div>
-        </div>
-      </div>
-    </motion.div>
+          <div className="flex flex-wrap gap-2.5">
+            {category.skills.map((skill, skillIndex) => (
+              <motion.span
+                key={skill}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: catIndex * 0.08 + skillIndex * 0.03 }}
+                className="px-4 py-2 rounded-xl bg-gray-900/50 border border-gray-800/50 text-gray-300 text-sm font-medium hover:border-designColor/50 hover:text-white hover:bg-gray-900 transition-all duration-300 cursor-default"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      ))}
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Title from '../layouts/Title';
 import ContactLeft from './ContactLeft';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // ========== Email Validation start here ==============
   const emailValidation = () => {
@@ -30,135 +32,157 @@ const Contact = () => {
     } else if (!emailValidation(email)) {
       setErrMsg("Give a valid Email!");
     } else if (subject === "") {
-      setErrMsg("Plese give your Subject!");
+      setErrMsg("Please give your Subject!");
     } else if (message === "") {
       setErrMsg("Message is required!");
     } else {
-      setSuccessMsg(
-        `Thank you dear ${username}, Your Messages has been sent Successfully!`
-      );
-      setErrMsg("");
-      setUsername("");
-      setPhoneNumber("");
-      setEmail("");
-      setSubject("");
-      setMessage("");
+      setIsSubmitting(true);
+      // Simulate form submission
+      setTimeout(() => {
+        setSuccessMsg(`Thank you ${username}, your message has been sent successfully!`);
+        setErrMsg("");
+        setUsername("");
+        setPhoneNumber("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        setIsSubmitting(false);
+      }, 1000);
     }
   };
+
+  const inputClassName = (errorCondition) => `
+    w-full px-5 py-4 rounded-xl bg-gray-900/50 border ${
+      errorCondition ? 'border-designColor focus:border-designColor focus:ring-1 focus:ring-designColor' 
+      : 'border-gray-800/50 focus:border-designColor/50 focus:ring-1 focus:ring-designColor/50'
+    } text-white placeholder-gray-600 transition-all duration-300 outline-none
+    hover:border-gray-700
+  `.trim();
+
+  const labelClassName = "block text-sm font-medium text-gray-400 mb-2 uppercase tracking-wider";
+
   return (
     <section
       id="contact"
-      className="w-full py-20 border-b-[1px] border-b-black"
+      className="w-full py-20 lg:py-28 border-b border-gray-900"
     >
-      <div className="flex justify-center items-center text-center">
-        <Title title="CONTACT" des="Contact With Me" />
-      </div>
-      <div className="w-full">
-        <div className="w-full h-auto flex flex-col lgl:flex-row justify-between">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+          <Title title="Get In Touch" des="Let's Build Something Together" />
+          <p className="text-gray-400 text-base lg:text-lg leading-relaxed mt-6">
+            Have a project in mind or just want to say hello? I'd love to hear from you. 
+            Fill out the form and I'll get back to you as soon as possible.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           <ContactLeft />
-          <div className="w-full lgl:w-[60%] h-full py-10 bg-gradient-to-r from-[#1e2024] to-[#23272b] flex flex-col gap-8 p-4 lgl:p-8 rounded-lg shadow-shadowOne">
-            <form className="w-full flex flex-col gap-4 lgl:gap-6 py-2 lgl:py-5">
-              {errMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-orange-500 text-base tracking-wide animate-bounce">
-                  {errMsg}
-                </p>
-              )}
-              {successMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-green-500 text-base tracking-wide animate-bounce">
-                  {successMsg}
-                </p>
-              )}
-              <div className="w-full flex flex-col lgl:flex-row gap-10">
-                <div className="w-full lgl:w-1/2 flex flex-col gap-4">
-                  <p className="text-sm text-gray-400 uppercase tracking-wide">
-                    Your name
-                  </p>
+          
+          <div className="relative">
+            <div className="bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-2xl p-6 lg:p-8 backdrop-blur-sm">
+              <form onSubmit={handleSend} className="space-y-5" noValidate>
+                {(errMsg || successMsg) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`px-5 py-4 rounded-xl text-center text-base font-medium ${
+                      successMsg ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
+                      : 'bg-orange-500/10 border border-orange-500/20 text-orange-400'
+                    }`}
+                  >
+                    {successMsg || errMsg}
+                  </motion.div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="username" className={labelClassName}>Your Name</label>
+                    <input
+                      id="username"
+                      onChange={(e) => setUsername(e.target.value)}
+                      value={username}
+                      className={inputClassName(errMsg === "Username is required!")}
+                      type="text"
+                      placeholder="Sonam Gupta"
+                      aria-invalid={errMsg === "Username is required!"}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className={labelClassName}>Phone Number</label>
+                    <input
+                      id="phone"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      value={phoneNumber}
+                      className={inputClassName(errMsg === "Phone number is required!")}
+                      type="tel"
+                      placeholder="+91 XXXXX XXXXX"
+                      aria-invalid={errMsg === "Phone number is required!"}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="email" className={labelClassName}>Email Address</label>
                   <input
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
-                    className={`${
-                      errMsg === "Username is required!" &&
-                      "outline-designColor"
-                    } contactInput`}
-                    type="text"
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    className={inputClassName(errMsg === "Please give your Email!" || (email && !emailValidation()))}
+                    type="email"
+                    placeholder="sonam@example.com"
+                    aria-invalid={errMsg === "Please give your Email!" || (email && !emailValidation())}
                   />
                 </div>
-                <div className="w-full lgl:w-1/2 flex flex-col gap-4">
-                  <p className="text-sm text-gray-400 uppercase tracking-wide">
-                    Phone Number
-                  </p>
+
+                <div>
+                  <label htmlFor="subject" className={labelClassName}>Subject</label>
                   <input
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    value={phoneNumber}
-                    className={`${
-                      errMsg === "Phone number is required!" &&
-                      "outline-designColor"
-                    } contactInput`}
+                    id="subject"
+                    onChange={(e) => setSubject(e.target.value)}
+                    value={subject}
+                    className={inputClassName(errMsg === "Please give your Subject!")}
                     type="text"
+                    placeholder="Project inquiry / Collaboration / Hello"
+                    aria-invalid={errMsg === "Please give your Subject!"}
                   />
                 </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">
-                  Email
-                </p>
-                <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  className={`${
-                    errMsg === "Please give your Email!" &&
-                    "outline-designColor"
-                  } contactInput`}
-                  type="email"
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">
-                  Subject
-                </p>
-                <input
-                  onChange={(e) => setSubject(e.target.value)}
-                  value={subject}
-                  className={`${
-                    errMsg === "Plese give your Subject!" &&
-                    "outline-designColor"
-                  } contactInput`}
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm text-gray-400 uppercase tracking-wide">
-                  Message
-                </p>
-                <textarea
-                  onChange={(e) => setMessage(e.target.value)}
-                  value={message}
-                  className={`${
-                    errMsg === "Message is required!" && "outline-designColor"
-                  } contactTextArea`}
-                  cols="30"
-                  rows="8"
-                ></textarea>
-              </div>
-              <div className="w-full">
+
+                <div>
+                  <label htmlFor="message" className={labelClassName}>Message</label>
+                  <textarea
+                    id="message"
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    className={`${inputClassName(errMsg === "Message is required!")} min-h-[140px] resize-y`}
+                    placeholder="Tell me about your project, idea, or just say hi..."
+                    rows={5}
+                    aria-invalid={errMsg === "Message is required!"}
+                  ></textarea>
+                </div>
+
                 <button
+                  type="submit"
                   onClick={handleSend}
-                  className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-designColor to-pink-600 text-white font-medium text-base hover:from-pink-600 hover:to-designColor hover:shadow-[0_0_30px_rgba(255,1,79,0.4)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
-              </div>
-              {errMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-orange-500 text-base tracking-wide animate-bounce">
-                  {errMsg}
-                </p>
-              )}
-              {successMsg && (
-                <p className="py-3 bg-gradient-to-r from-[#1e2024] to-[#23272b] shadow-shadowOne text-center text-green-500 text-base tracking-wide animate-bounce">
-                  {successMsg}
-                </p>
-              )}
-            </form>
+              </form>
+            </div>
+            
+            {/* Decorative glow */}
+            <div className="absolute -bottom-10 -right-10 w-[300px] h-[300px] bg-gradient-to-br from-designColor/10 to-transparent rounded-full blur-3xl pointer-events-none" />
           </div>
         </div>
       </div>
